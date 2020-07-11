@@ -106,6 +106,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "friends-tracker"
+    }
+  },
+  "defaultProject": "friends-tracker",
+  "cli": {
+    "analytics": false
+  }
 }
