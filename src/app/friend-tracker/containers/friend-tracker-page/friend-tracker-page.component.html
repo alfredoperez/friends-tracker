@@ -1,0 +1,32 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutAlign="start center">
+  <header class="header"
+          fxLayout="column"
+          fxLayoutAlign="center center">
+    <div class="title--container">
+      <h1 class="title--text">Friends Tracker Application</h1>
+    </div>
+
+  </header>
+  <ng-template #loading>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+  <section *ngIf="friendsDataSource | async; else loading"
+           class="content"
+           fxLayout="column"
+           fxLayoutAlign="center center">
+    <app-friends-table [friendsDataSource]="friendsDataSource | async">
+      <div class="table-actions">
+        <button (click)="addFriend()"
+                color="primary"
+                fxFlex="none"
+                mat-mini-fab
+                matTooltip="Add Friend"
+                type="button">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </app-friends-table>
+  </section>
+</div>
