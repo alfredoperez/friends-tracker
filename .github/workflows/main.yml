@@ -20,5 +20,7 @@ jobs:
       - name: Angular Deploy gh-pages Actions
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.2.1
         with:
+          github_access_token: ${{ secrets.ACCESS_TOKEN }}
           build_folder: dist/friends-tracker
+          base_href: /friends-tracker/
 
