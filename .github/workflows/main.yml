@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build and Deploy
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -16,6 +16,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        - name: Angular Deploy gh-pages Actions
-          uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.2.1
+      - uses: actions/checkout@v2
+      - name: Angular Deploy gh-pages Actions
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.2.1
+        with:
+          build_folder: dist/friends-tracker
 
