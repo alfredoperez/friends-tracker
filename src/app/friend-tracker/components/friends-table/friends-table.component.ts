@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { fadeInUp400ms } from '../../../shared/animations/fade-in-up.animations';
-import { stagger40ms } from '../../../shared/animations/stagger.animation';
 import { Friend } from '../../../shared/models/friends.model';
 
 @Component({
@@ -11,7 +10,7 @@ import { Friend } from '../../../shared/models/friends.model';
   templateUrl: './friends-table.component.html',
   styleUrls: ['./friends-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [stagger40ms, fadeInUp400ms]
+  animations: [fadeInUp400ms]
 })
 export class FriendsTableComponent implements OnInit, AfterViewInit {
 
@@ -70,9 +69,13 @@ export class FriendsTableComponent implements OnInit, AfterViewInit {
     if (innerWidth < 500) {
 
     }
-    this.visibleColumns = innerWidth < 800
-      ? ['name', 'age', 'weight']
-      : ['name', 'created', 'age', 'weight', 'friends'];
+    if (innerWidth < 460) {
+      this.visibleColumns = ['name', 'age', 'weight'];
+    } else if (innerWidth < 820) {
+      this.visibleColumns = ['name', 'created', 'weight', 'friends'];
+    } else {
+      this.visibleColumns = ['name', 'created', 'age', 'weight', 'friends'];
+    }
   }
 
   @HostListener('window:resize', ['$event'])

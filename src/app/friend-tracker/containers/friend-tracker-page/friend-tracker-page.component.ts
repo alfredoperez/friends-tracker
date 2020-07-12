@@ -5,7 +5,14 @@ import { Observable } from 'rxjs';
 import { Friend } from '../../../shared/models/friends.model';
 import { FriendsApiService } from '../../../shared/services/friends-api.service';
 import { AddFriendModalComponent } from '../../components/add-friend-modal/add-friend-modal.component';
-import { selectAllFriends, selectError, selectIsLoaded, selectIsLoading } from '../../state';
+import {
+  selectAllFriends,
+  selectError,
+  selectFriendAcquisitionDifference,
+  selectIsLoaded,
+  selectIsLoading,
+  selectTotalFriendsCurrentMonth
+} from '../../state';
 import { FriendsTrackerPageActions } from '../../state/actions';
 import { State } from '../../state/reducers/friends-tracker.reducers';
 
@@ -35,6 +42,9 @@ export class FriendTrackerPageComponent implements OnInit {
    */
   public error$: Observable<string>;
 
+  public totalFriendsCurrentMonth$: Observable<number>;
+  public percentageDifference$: Observable<number>;
+
   constructor(
     private friendsService: FriendsApiService,
     private dialog: MatDialog,
@@ -48,6 +58,9 @@ export class FriendTrackerPageComponent implements OnInit {
     this.isLoaded$ = this.store.select(selectIsLoaded);
     this.isLoading$ = this.store.select(selectIsLoading);
     this.error$ = this.store.select(selectError);
+
+    this.totalFriendsCurrentMonth$ = this.store.select(selectTotalFriendsCurrentMonth);
+    this.percentageDifference$ = this.store.select(selectFriendAcquisitionDifference);
   }
 
   /**

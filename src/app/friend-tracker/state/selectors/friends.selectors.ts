@@ -43,3 +43,31 @@ export const selectError = createSelector(
 );
 
 
+export const selectTotalFriendsCurrentMonth = createSelector(
+  selectAllFriends,
+  (friends) => {
+    return friends.filter(friend => {
+      const currentMonth = new Date().getMonth();
+      return friend.created.getMonth() === currentMonth;
+    }).length;
+  }
+);
+
+
+export const selectTotalFriendsPreviousMonth = createSelector(
+  selectAllFriends,
+  (friends) => {
+    return friends.filter(friend => {
+      const previousMonth = new Date().getMonth() - 1;
+      return friend.created.getMonth() === previousMonth;
+    }).length;
+  }
+);
+
+export const selectFriendAcquisitionDifference = createSelector(
+  selectTotalFriendsCurrentMonth,
+  selectTotalFriendsPreviousMonth,
+  (totalCurrentMonth, totalPreviousMonth) => {
+    return (totalCurrentMonth * 100) / totalPreviousMonth;
+  }
+);

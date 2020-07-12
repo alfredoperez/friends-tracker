@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AddFriendModalModule } from '../../components/add-friend-modal/add-friend-modal.module';
+import { AddedFriendsWidgetModule } from '../../components/added-friends-widget/added-friends-widget.module';
 import { FriendsTableModule } from '../../components/friends-table/friends-table.module';
 import { FriendTrackerPageComponent } from './friend-tracker-page.component';
 
@@ -20,6 +21,7 @@ import { FriendTrackerPageComponent } from './friend-tracker-page.component';
     CommonModule,
     FlexLayoutModule,
     FriendsTableModule,
+    AddedFriendsWidgetModule,
     AddFriendModalModule,
     MatProgressSpinnerModule,
     MatButtonModule,

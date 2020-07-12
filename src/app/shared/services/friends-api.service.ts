@@ -31,7 +31,7 @@ export class FriendsApiService {
         name: faker.name.findName(),
         weight: Math.floor(Math.random() * (220 - 120)) + 120,
         age: Math.floor(Math.random() * (65 - 23)) + 23,
-        created: faker.date.between(new Date(2020, 1, 1), new Date(2020, 6, 1)),
+        created: faker.date.between(new Date(2020, 1, 1), new Date(2020, 7, 10)),
         friends: []
       } as Friend;
       friends.push(friend);
@@ -46,7 +46,7 @@ export class FriendsApiService {
       }
     });
 
-    return of(friends).pipe(delay(500));
+    return of(friends).pipe(delay(200));
   }
 
   /**
@@ -62,6 +62,6 @@ export class FriendsApiService {
       id: faker.random.uuid()
     };
 
-    return of(newFriend).pipe(delay(500));
+    return of(newFriend);
   }
 }
