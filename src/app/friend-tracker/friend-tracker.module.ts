@@ -12,7 +12,7 @@ const featureRoutes = [{path: '', component: FriendTrackerPageComponent}];
     CommonModule,
     RouterModule.forChild(featureRoutes),
     FriendTrackerStateModule,
-    FriendTrackerPageModule
+    FriendTrackerPageModule,
   ]
 })
 export class FriendTrackerModule {

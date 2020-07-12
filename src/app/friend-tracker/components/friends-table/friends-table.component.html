@@ -6,7 +6,7 @@
     <ng-content select=".table-actions"></ng-content>
   </div>
   <table
-    @stagger
+    @fadeInUp
     [dataSource]="friendsDataSource"
     class="table"
     mat-table
@@ -58,6 +58,7 @@
     </ng-container>
     <ng-container matColumnDef="friends">
       <th *matHeaderCellDef
+          [ngClass]="'w-300'"
           mat-header-cell
           mat-sort-header>
         Friends

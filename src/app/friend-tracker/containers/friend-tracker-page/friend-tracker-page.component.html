@@ -20,7 +20,7 @@
            class="content"
            fxLayout="column"
            fxLayoutAlign="center center">
-    <app-friends-table [friends]="friends$ | async">
+    <app-friends-table [friends]="friends$">
       <div class="table-actions">
         <button (click)="addFriend()"
                 color="primary"
@@ -32,5 +32,12 @@
         </button>
       </div>
     </app-friends-table>
+
+    <app-added-friends-widget
+      [percentageDifference]="percentageDifference$| async"
+      [timelineData]="friendsCurrentMonth$ | async"
+      [totalFriendsCurrentMonth]="totalFriendsCurrentMonth$ | async"
+      class="friends-widget">
+    </app-added-friends-widget>
   </section>
 </div>

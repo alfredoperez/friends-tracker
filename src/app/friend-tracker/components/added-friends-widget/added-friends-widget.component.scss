@@ -1,0 +1,60 @@
+.friends-widget {
+  width: 100%
+}
+
+.overview {
+  width: 402px;
+  height: 350px;
+  padding: 16px 24px 24px;
+  line-height: 21px;
+
+  &--total {
+    font-size: 65px;
+    font-weight: 700;
+    margin-top: 80px
+  }
+
+  &--title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: -20px;
+  }
+
+  &--indicator {
+    margin-top: 44px;
+
+    &-icon__up {
+      color: #4caf50;
+      background: rgba(76, 175, 80, .1);
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &-icon__down {
+      color: #f44336;
+      background: rgba(244, 67, 54, .1);
+      height: 2rem;
+      width: 2rem;
+    }
+
+    &-text {
+      font-size: 14px;
+
+      &__up {
+        color: #4caf50;
+        font-weight: 700;
+      }
+
+      &__down {
+        color: #f44336;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+
+.chart {
+  width: 402px;
+  height: 350px;
+}

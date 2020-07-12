@@ -1,0 +1,81 @@
+<mat-card @fadeInUp
+          class="mat-elevation-z8 friends-widget"
+          fxFlex>
+  <mat-card-header>
+    <mat-card-title>New Friends Overview</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="widget-content"
+         fxLayout="row"
+         fxLayout.lt-md="column"
+         fxLayoutAlign="start center"
+         fxLayoutGap="16px">
+      <div class="overview">
+        <div fxFlex="auto"
+             fxLayout="column">
+          <h2 class="overview--total">{{totalFriendsCurrentMonth}}</h2>
+          <h3 class="overview--title">New friends this month</h3>
+
+          <div *ngIf="percentageDifference >0"
+               class="overview--indicator"
+               fxLayout="row"
+               fxLayoutAlign="start center"
+               fxLayoutGap="16px">
+            <div class="overview--indicator-icon__up"
+                 fxFlex="none"
+                 fxLayout="row"
+                 fxLayoutAlign="center center">
+              <mat-icon>trending_up</mat-icon>
+            </div>
+
+            <p class="overview--indicator-text">
+              <span class="overview--indicator-text__up">{{percentageDifference | number:'2.1-2'}}% more friends</span>
+              than last month.
+            </p>
+          </div>
+          <div *ngIf="percentageDifference === 0 "
+               class="overview--indicator"
+               fxLayout="row"
+               fxLayoutAlign="start center"
+               fxLayoutGap="16px">
+            <div class="overview--indicator-icon__up"
+                 fxFlex="none"
+                 fxLayout="row"
+                 fxLayoutAlign="center center">
+              <mat-icon>trending_flat</mat-icon>
+            </div>
+            <p class="overview--indicator-text">
+              Same as previous month.
+            </p>
+          </div>
+          <div *ngIf="percentageDifference < 0 "
+               class="overview--indicator"
+               fxLayout="row"
+               fxLayoutAlign="start center"
+               fxLayoutGap="16px">
+            <div class="overview--indicator-icon__down"
+                 fxFlex="none"
+                 fxLayout="row"
+                 fxLayoutAlign="center center">
+              <mat-icon>trending_down</mat-icon>
+            </div>
+            <p class="overview--indicator-text">
+              <span class="overview--indicator-text__down">{{percentageDifference | number:'2.1-2' }}
+                % less friends</span>
+              than last month.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="chart">
+        <app-timeline [data]="timelineData"
+                      [xAccessor]="dateAccessor"
+                      [yAccessor]="countAccessor"
+                      xLabel="Dates"
+                      yLabel="Friends Added"
+        >
+        </app-timeline>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
