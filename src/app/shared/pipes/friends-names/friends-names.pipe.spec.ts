@@ -17,7 +17,7 @@ describe('FriendsNamesPipe', () => {
 
   describe('transform', () => {
 
-    it('transforms list of names to string', () => {
+    it('should transform list of names to string', () => {
       const friends = [
         {name: 'test'},
         {name: 'test 2'}
@@ -26,6 +26,12 @@ describe('FriendsNamesPipe', () => {
       const result = pipe.transform(friends);
       expect(result).toEqual('test, test 2');
     });
+
+    it('should return empty when there are not friends', () => {
+      const result = pipe.transform([]);
+      expect(result).toEqual('');
+    });
+
 
   });
 

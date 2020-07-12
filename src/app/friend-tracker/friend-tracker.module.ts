@@ -1,21 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '../material.module';
-import { FriendsTableModule } from './components/friends-table/friends-table.module';
 import { FriendTrackerPageComponent } from './containers/friend-tracker-page/friend-tracker-page.component';
+import { FriendTrackerPageModule } from './containers/friend-tracker-page/friend-tracker-page.module';
+import { FriendTrackerStateModule } from './state/friend-tracker-state.module';
+
+const featureRoutes = [{path: '', component: FriendTrackerPageComponent}];
 
 @NgModule({
-  declarations: [FriendTrackerPageComponent],
   imports: [
     CommonModule,
-    FlexLayoutModule,
-    RouterModule.forChild(
-      [{path: '', component: FriendTrackerPageComponent}]
-    ),
-    FriendsTableModule,
-    MaterialModule
+    RouterModule.forChild(featureRoutes),
+    FriendTrackerStateModule,
+    FriendTrackerPageModule
   ]
 })
 export class FriendTrackerModule {

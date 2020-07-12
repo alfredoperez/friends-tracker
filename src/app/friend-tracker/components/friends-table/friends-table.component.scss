@@ -18,11 +18,23 @@
 
 table {
   width: 100%;
-  min-width: 800px;
+  // min-width: 800px;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
+
+.w-100 {
+  width: 100px;
+}
+
+.w-150 {
+  width: 150px;
+}
+
+.w-200 {
+  width: 200px;
+}
 
 .paginator {
   left: 0;
