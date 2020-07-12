@@ -64,7 +64,8 @@
             type="button">
       Cancel
     </button>
-    <button color="primary"
+    <button [disabled]="form.invalid"
+            color="primary"
             mat-button
             type="submit">
       Add Friend
