@@ -32,8 +32,11 @@
         </button>
       </div>
     </app-friends-table>
-    <app-added-friends-widget [percentageDifference]="percentageDifference$| async"
-                              [totalFriendsCurrentMonth]="totalFriendsCurrentMonth$ | async"
-                              class="friends-widget"></app-added-friends-widget>
+    <app-added-friends-widget
+      [percentageDifference]="percentageDifference$| async"
+      [timelineData]="friendsCurrentMonth$ | async"
+      [totalFriendsCurrentMonth]="totalFriendsCurrentMonth$ | async"
+      class="friends-widget">
+    </app-added-friends-widget>
   </section>
 </div>

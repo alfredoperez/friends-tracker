@@ -31,7 +31,10 @@ export class FriendsApiService {
         name: faker.name.findName(),
         weight: Math.floor(Math.random() * (220 - 120)) + 120,
         age: Math.floor(Math.random() * (65 - 23)) + 23,
-        created: faker.date.between(new Date(2020, 1, 1), new Date(2020, 7, 10)),
+        created: faker.date.between(
+          new Date(2020, 4, 1),
+          new Date(2020, 6, 10)
+        ),
         friends: []
       } as Friend;
       friends.push(friend);

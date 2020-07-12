@@ -29,8 +29,8 @@
             </div>
 
             <p class="overview--indicator-text">
-              <span class="overview--indicator-text__up">{{percentageDifference}}% more friends</span>
-              in comparison to last month.
+              <span class="overview--indicator-text__up">{{percentageDifference | number:'2.1-2'}}% more friends</span>
+              than last month.
             </p>
           </div>
           <div *ngIf="percentageDifference === 0 "
@@ -60,14 +60,22 @@
               <mat-icon>trending_down</mat-icon>
             </div>
             <p class="overview--indicator-text">
-
-              <span class="overview--indicator-text__down">{{percentageDifference}}% less friends</span>
-              in comparison to last month.
+              <span class="overview--indicator-text__down">{{percentageDifference | number:'2.1-2' }}
+                % less friends</span>
+              than last month.
             </p>
           </div>
         </div>
       </div>
-      <div class="chart"></div>
+      <div class="chart">
+        <app-timeline [data]="timelineData"
+                      [xAccessor]="dateAccessor"
+                      [yAccessor]="countAccessor"
+                      xLabel="Dates"
+                      yLabel="Friends Added"
+        >
+        </app-timeline>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

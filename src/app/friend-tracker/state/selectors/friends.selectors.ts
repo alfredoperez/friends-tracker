@@ -1,5 +1,7 @@
 import { createSelector } from '@ngrx/store';
+import { TimelineDataPoint } from '../../../shared/components/timeline';
 import { getError, LoadingState } from '../../../shared/models/entity-state.model';
+import { getCountsByDate } from '../../../shared/utils/date.utils';
 import { FriendsReducers } from '../reducers';
 import { selectFriendsTrackerState } from './friends-tracker.selectors';
 
@@ -42,14 +44,26 @@ export const selectError = createSelector(
   (state) => getError(state.callState)
 );
 
+export const selectTimelineDataOfFriendsCurrentMonth = createSelector(
+  selectAllFriends,
+  (friends) => {
+    const currentMonth = new Date().getMonth();
+    const friendsCurrentMonth = friends.filter(friend => friend.created.getMonth() === currentMonth);
+    const countByDate = getCountsByDate(friendsCurrentMonth, 'created');
+
+    return countByDate.map(({count, date}) => ({
+      count, date
+    } as any as TimelineDataPoint));
+  }
+);
 
 export const selectTotalFriendsCurrentMonth = createSelector(
   selectAllFriends,
   (friends) => {
-    return friends.filter(friend => {
-      const currentMonth = new Date().getMonth();
-      return friend.created.getMonth() === currentMonth;
-    }).length;
+    const currentMonth = new Date().getMonth();
+
+    return friends
+      .filter(friend => friend.created.getUTCMonth() === currentMonth).length;
   }
 );
 
@@ -57,10 +71,9 @@ export const selectTotalFriendsCurrentMonth = createSelector(
 export const selectTotalFriendsPreviousMonth = createSelector(
   selectAllFriends,
   (friends) => {
-    return friends.filter(friend => {
-      const previousMonth = new Date().getMonth() - 1;
-      return friend.created.getMonth() === previousMonth;
-    }).length;
+    const previousMonth = new Date().getUTCMonth() - 1;
+    return friends
+      .filter(friend => friend.created.getUTCMonth() === previousMonth).length;
   }
 );
 

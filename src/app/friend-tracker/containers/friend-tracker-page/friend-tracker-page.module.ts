@@ -20,9 +20,6 @@ import { FriendTrackerPageComponent } from './friend-tracker-page.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    FriendsTableModule,
-    AddedFriendsWidgetModule,
-    AddFriendModalModule,
     MatProgressSpinnerModule,
     MatButtonModule,
     MatCardModule,
@@ -31,7 +28,11 @@ import { FriendTrackerPageComponent } from './friend-tracker-page.component';
     MatInputModule,
     MatTooltipModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+
+    FriendsTableModule,
+    AddedFriendsWidgetModule,
+    AddFriendModalModule
   ],
   exports: [FriendTrackerPageComponent]
 })

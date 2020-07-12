@@ -1,0 +1,40 @@
+<div #container>
+  <app-chart
+    [dimensions]="dimensions">
+    <svg:defs>
+      <svg:g [colors]="gradientColors"
+             [id]="gradientId"
+             appGradient
+             x2="0"
+             y2="100%"
+      >
+      </svg:g>
+    </svg:defs>
+    <svg:g [dimensions]="dimensions"
+           [formatTick]="formatDate"
+           [label]="xLabel"
+           [scale]="xScale"
+           appAxis
+           dimension="x">
+    </svg:g>
+    <svg:g [dimensions]="dimensions"
+           [label]="yLabel"
+           [scale]="yScale"
+           appAxis
+           dimension="y">
+    </svg:g>
+    <svg:g [data]="data"
+           [xAccessor]="xAccessorScaled"
+           [y0Accessor]="y0AccessorScaled"
+           [yAccessor]="yAccessorScaled"
+           appLine
+           fill="url(#{{ gradientId }})"
+           type="area">
+    </svg:g>
+    <svg:g [data]="data"
+           [xAccessor]="xAccessorScaled"
+           [yAccessor]="yAccessorScaled"
+           appLine>
+    </svg:g>
+  </app-chart>
+</div>
