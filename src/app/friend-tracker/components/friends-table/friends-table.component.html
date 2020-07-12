@@ -10,9 +10,12 @@
     [dataSource]="friendsDataSource"
     class="table"
     mat-table
-    matSort>
+    matSort
+    matSortActive="created"
+    matSortDirection="desc">
     <ng-container matColumnDef="name">
       <th *matHeaderCellDef
+          [ngClass]="'w-200'"
           mat-header-cell
           mat-sort-header>
         Name
@@ -20,18 +23,20 @@
       <td *matCellDef="let element"
           mat-cell> {{element.name}} </td>
     </ng-container>
-    <ng-container matColumnDef="added">
+    <ng-container matColumnDef="created">
       <th *matHeaderCellDef
+          [ngClass]="'w-150'"
           mat-header-cell
           mat-sort-header>
-        Added
+        Created
       </th>
       <td *matCellDef="let element"
-          mat-cell> {{element.added |  date: 'mediumDate'}}
+          mat-cell> {{element.created |  date: 'mediumDate'}}
       </td>
     </ng-container>
     <ng-container matColumnDef="weight">
       <th *matHeaderCellDef
+          [ngClass]="'w-100'"
           mat-header-cell
           mat-sort-header>
         Weight
@@ -42,6 +47,7 @@
     </ng-container>
     <ng-container matColumnDef="age">
       <th *matHeaderCellDef
+          [ngClass]="'w-100'"
           mat-header-cell
           mat-sort-header>
         Age

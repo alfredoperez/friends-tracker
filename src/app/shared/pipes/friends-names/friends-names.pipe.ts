@@ -14,6 +14,9 @@ export class FriendsNamesPipe implements PipeTransform {
    * @param friends - List of friends
    */
   transform(friends: Array<Friend>): string {
+    if (friends === null || !Array.isArray(friends)) {
+      return '';
+    }
     return friends.map(friend => friend.name)
       .join(', ');
   }

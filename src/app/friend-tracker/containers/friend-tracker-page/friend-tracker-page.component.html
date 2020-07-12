@@ -7,16 +7,20 @@
     <div class="title--container">
       <h1 class="title--text">Friends Tracker Application</h1>
     </div>
-
   </header>
-  <ng-template #loading>
+  <ng-container *ngIf="error$ | async as error">
+    <h1> Sorry! </h1>
+    <h3>{{error}}</h3>
+  </ng-container>
+  <ng-container *ngIf="isLoading$ | async">
+    <h2>... Fake loading ...</h2>
     <mat-spinner></mat-spinner>
-  </ng-template>
-  <section *ngIf="friendsDataSource | async; else loading"
+  </ng-container>
+  <section *ngIf="isLoaded$ |  async"
            class="content"
            fxLayout="column"
            fxLayoutAlign="center center">
-    <app-friends-table [friendsDataSource]="friendsDataSource | async">
+    <app-friends-table [friends]="friends$ | async">
       <div class="table-actions">
         <button (click)="addFriend()"
                 color="primary"

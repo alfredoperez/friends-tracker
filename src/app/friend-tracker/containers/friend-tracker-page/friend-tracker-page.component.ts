@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Friend } from '../../../shared/models/friends.model';
 import { FriendsApiService } from '../../../shared/services/friends-api.service';
+import { AddFriendModalComponent } from '../../components/add-friend-modal/add-friend-modal.component';
+import { selectAllFriends, selectError, selectIsLoaded, selectIsLoading } from '../../state';
+import { FriendsTrackerPageActions } from '../../state/actions';
+import { State } from '../../state/reducers/friends-tracker.reducers';
 
 @Component({
   templateUrl: './friend-tracker-page.component.html',
@@ -12,28 +16,59 @@ import { FriendsApiService } from '../../../shared/services/friends-api.service'
 export class FriendTrackerPageComponent implements OnInit {
 
   /**
-   * The table data source of friends
+   * Observable of the list of friends
    */
-  public friendsDataSource: Observable<MatTableDataSource<Friend>>;
+  public friends$: Observable<Array<Friend>>;
 
-  constructor(private friendsService: FriendsApiService) {
+  /**
+   * Observable with a flag when it is loading data
+   */
+  public isLoading$: Observable<boolean>;
+
+  /**
+   * Observable with a flag when the data was loaded
+   */
+  public isLoaded$: Observable<boolean>;
+
+  /**
+   * Observable with a flag when it is loading data
+   */
+  public error$: Observable<string>;
+
+  constructor(
+    private friendsService: FriendsApiService,
+    private dialog: MatDialog,
+    private store: Store<State>) {
   }
 
   ngOnInit(): void {
-    this.friendsDataSource = this.friendsService.list()
-      .pipe(
-        map(friends => {
-          const dataSource = new MatTableDataSource<Friend>();
-          dataSource.data = friends;
-          return dataSource;
-        })
-      );
+    this.store.dispatch(FriendsTrackerPageActions.enter());
+
+    this.friends$ = this.store.select(selectAllFriends);
+    this.isLoaded$ = this.store.select(selectIsLoaded);
+    this.isLoading$ = this.store.select(selectIsLoading);
+    this.error$ = this.store.select(selectError);
   }
 
   /**
-   * Opens a modal to add a new friend
+   * Opens a modal to add a new friend.
+   * Dispatches an action to save the friend once the dialog is closed
    */
-  public addFriend(): void {
+  public async addFriend(): Promise<void> {
 
+    const friend = await this.dialog.open(
+      AddFriendModalComponent,
+      {
+        data: {
+          friends$: this.store.select(selectAllFriends)
+        }
+      }
+    ).afterClosed().toPromise();
+
+    if (!friend) {
+      return;
+    }
+
+    this.store.dispatch(FriendsTrackerPageActions.addFriend({friend}));
   }
 }

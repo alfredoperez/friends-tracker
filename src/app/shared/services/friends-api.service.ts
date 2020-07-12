@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { Friend } from '../models/friends.model';
 
 /**
@@ -19,14 +20,18 @@ export class FriendsApiService {
    *       The friends are different every time
    */
   list(): Observable<Array<Friend>> {
+    // NOTE: Uncomment the following code to simulate an error
+    // return throwError(new Error('Fake error'));
+
     const friends = [] as Array<Friend>;
 
     for (let i = 0; i < 150; i++) {
       const friend = {
+        id: faker.random.uuid(),
         name: faker.name.findName(),
         weight: Math.floor(Math.random() * (220 - 120)) + 120,
         age: Math.floor(Math.random() * (65 - 23)) + 23,
-        created: faker.date.between(new Date(2020, 1, 1), new Date(2020, 7, 1)),
+        created: faker.date.between(new Date(2020, 1, 1), new Date(2020, 6, 1)),
         friends: []
       } as Friend;
       friends.push(friend);
@@ -41,6 +46,22 @@ export class FriendsApiService {
       }
     });
 
-    return of(friends);
+    return of(friends).pipe(delay(500));
+  }
+
+  /**
+   * Adds a friend to the collection
+   * @param friend - Friend to be added
+   */
+  add(friend: Friend): Observable<Friend> {
+    // NOTE: Uncomment the following code to simulate an error
+    // return throwError(new Error('Fake error'));
+    const newFriend = {
+      ...friend,
+      created: new Date(Date.now()),
+      id: faker.random.uuid()
+    };
+
+    return of(newFriend).pipe(delay(500));
   }
 }
