@@ -76,12 +76,12 @@ export class FriendsTableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setVisibleColumns(): void {
-    if (innerWidth < 460) {
+    if (innerWidth < 600) {
       this.visibleColumns = ['name', 'age', 'weight'];
     } else if (innerWidth < 820) {
-      this.visibleColumns = ['name', 'created', 'weight', 'friends'];
+      this.visibleColumns = ['name', 'age', 'friends'];
     } else {
-      this.visibleColumns = ['name', 'created', 'age', 'weight', 'friends'];
+      this.visibleColumns = ['name', 'age', 'weight', 'friends', 'created'];
     }
   }
 
