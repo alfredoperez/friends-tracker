@@ -5,7 +5,7 @@ import { AccessorType, DimensionsType, getUniqueId, ScaleType } from '../chart';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.css'],
+  styleUrls: ['./timeline.component.scss'],
 })
 export class TimelineComponent implements AfterContentInit, OnChanges {
 

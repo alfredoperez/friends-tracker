@@ -67,7 +67,6 @@ export const selectTotalFriendsCurrentMonth = createSelector(
   }
 );
 
-
 export const selectTotalFriendsPreviousMonth = createSelector(
   selectAllFriends,
   (friends) => {

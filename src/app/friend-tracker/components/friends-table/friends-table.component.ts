@@ -55,6 +55,8 @@ export class FriendsTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.friendsDataSource.paginator = this.paginator;
     this.friendsDataSource.sort = this.sort;
+    this.friendsDataSource.sort.direction = 'desc';
+    this.friendsDataSource.sort.active = 'created';
     this.friendsDataSource.sortingDataAccessor = (item, property) => {
       switch (property) {
         case 'created':
@@ -66,9 +68,6 @@ export class FriendsTableComponent implements OnInit, AfterViewInit {
   }
 
   private setVisibleColumns(): void {
-    if (innerWidth < 500) {
-
-    }
     if (innerWidth < 460) {
       this.visibleColumns = ['name', 'age', 'weight'];
     } else if (innerWidth < 820) {
