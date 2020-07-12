@@ -12,10 +12,20 @@ import { TimelineDataPoint } from '../../../shared/components/timeline';
 })
 export class AddedFriendsWidgetComponent implements OnInit {
 
+  /**
+   * The total friends added this month
+   */
   @Input() totalFriendsCurrentMonth: number;
 
+  /**
+   * The percentage difference between current and previous month
+   */
   @Input() percentageDifference: number;
 
+  /**
+   * The data to be shown in the timeline. This is the number of friends
+   * added per day of the current mont
+   */
   @Input() timelineData: Array<TimelineDataPoint>;
 
   dateAccessor: AccessorType;

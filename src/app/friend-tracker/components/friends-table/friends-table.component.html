@@ -10,7 +10,9 @@
     [dataSource]="friendsDataSource"
     class="table"
     mat-table
-    matSort>
+    matSort
+    matSortActive="created"
+    matSortDirection="desc">
     <ng-container matColumnDef="name">
       <th *matHeaderCellDef
           [ngClass]="'w-200'"

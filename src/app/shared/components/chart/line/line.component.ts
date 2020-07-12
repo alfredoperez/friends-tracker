@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import * as d3 from 'd3';
 import { AccessorType } from '../chart.models';
 
@@ -21,6 +21,7 @@ export class LineComponent implements OnChanges {
   @Input() y0Accessor?: AccessorType;
   @Input() interpolation?: Function = d3.curveMonotoneX;
   @Input() fill?: string;
+
   public lineString: '';
 
   updateLineString(): void {
@@ -36,7 +37,7 @@ export class LineComponent implements OnChanges {
     this.lineString = lineGenerator(this.data);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.updateLineString();
   }
 }

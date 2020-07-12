@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: '[appGradient]',
@@ -28,7 +28,7 @@ export class GradientComponent implements OnChanges {
   @Input() y2?: string[];
   public colorStops: object[];
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.updateColorStops();
   }
 

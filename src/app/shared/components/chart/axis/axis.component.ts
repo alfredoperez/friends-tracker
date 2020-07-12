@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import * as d3 from 'd3';
 import { DimensionsType, ScaleType } from '../chart.models';
 
@@ -13,6 +13,7 @@ export class AxisComponent implements OnChanges {
   @Input() scale: ScaleType;
   @Input() label: string;
   @Input() formatTick: (value: any) => (string | number) = d3.format(',');
+
   private ticks: Function[];
 
   updateTicks(): void {
@@ -29,7 +30,7 @@ export class AxisComponent implements OnChanges {
     this.ticks = this.scale.ticks(numberOfTicks);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.updateTicks();
   }
 }

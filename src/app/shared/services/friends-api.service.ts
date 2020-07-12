@@ -66,5 +66,6 @@ export class FriendsApiService {
     };
 
     return of(newFriend);
+
   }
 }

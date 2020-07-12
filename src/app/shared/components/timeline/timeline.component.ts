@@ -1,6 +1,7 @@
-import { AfterContentInit, Component, ElementRef, HostListener, Input, OnChanges, SimpleChanges, ViewChild, } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, HostListener, Input, OnChanges, ViewChild, } from '@angular/core';
 import * as d3 from 'd3';
 import { AccessorType, DimensionsType, getUniqueId, ScaleType } from '../chart';
+import { TimelineDataPoint } from './timeline.model';
 
 @Component({
   selector: 'app-timeline',
@@ -9,14 +10,29 @@ import { AccessorType, DimensionsType, getUniqueId, ScaleType } from '../chart';
 })
 export class TimelineComponent implements AfterContentInit, OnChanges {
 
-  @Input() data: Array<object>;
+  /**
+   * The data to be displayed in the time line chart
+   */
+  @Input() data: Array<TimelineDataPoint>;
 
+  /**
+   * The label for x
+   */
   @Input() xLabel: string;
 
+  /**
+   * The label for y
+   */
   @Input() yLabel: string;
 
+  /**
+   * Function to get the value from the object for the x
+   */
   @Input() xAccessor: AccessorType;
 
+  /**
+   * Function to get the value from the object for the y
+   */
   @Input() yAccessor: AccessorType;
 
   public dimensions: DimensionsType;
@@ -29,7 +45,6 @@ export class TimelineComponent implements AfterContentInit, OnChanges {
   public gradientId: string = getUniqueId('Timeline-gradient');
   public gradientColors: string[] = ['rgb(226, 222, 243)', '#f8f9fa'];
 
-  // @ts-ignore
   @ViewChild('container', {static: true}) container: ElementRef;
 
   constructor() {
@@ -78,7 +93,7 @@ export class TimelineComponent implements AfterContentInit, OnChanges {
     this.updateDimensions();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.updateScales();
   }
 
